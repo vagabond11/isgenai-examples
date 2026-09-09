@@ -1,0 +1,51 @@
+IMAGE REVIEW WORKSHEET — isGenAI.com
+Version: 9 September 2026. Original worksheet: CC0-1.0.
+Guide: https://isgenai.com/guides/how-to-check-ai-image
+Checker: https://isgenai.com/ai-image-detector
+
+1. SAVE THE SOURCE
+Where did you find the picture? Record the public page URL:
+Date/time you saw it (include timezone):
+Who posted it, and what did the caption claim?
+Which file did you check: original download, repost or screenshot?
+
+2. KEEP THE COPIES SEPARATE
+Original file reference:
+Reposted or edited copy reference:
+File hash from the report, if available:
+Store sensitive files privately; avoid adding personal data to public notes.
+
+3. RUN AND RECORD THE CHECK
+Check time:
+isGenAI result:
+Checks completed / checks unavailable:
+Exact AI label, saved prompt or recorded tool:
+Was the detail an editable field or a signed record?
+What did the signature and signer checks say, if present?
+Matching-copy source, if available:
+Saved report reference:
+
+4. CHECK THE CLAIM AROUND THE PICTURE
+Does an original publisher provide the same image and caption?
+Do reliable independent sources support the event, place and date?
+What changes are visible between the copies?
+What did the creator or publisher explain, if you already have a response?
+Keep observed facts separate from assumptions and unresolved questions.
+
+5. WRITE THE FINDING
+What did you directly observe?
+What remains unverified?
+What follow-up could resolve it?
+Reviewer / review date:
+Correction history:
+
+READING THE RESULT
+An AI label records a statement about a file. Editable details can be changed.
+A signature check concerns the signed record; it does not verify a depicted event.
+No signs found does not certify a camera photograph. Saved details can be removed.
+Use the original file and supporting sources when the picture's meaning matters.
+
+CONTROLLED EXAMPLE
+https://isgenai.com/guides/how-to-check-ai-image#examples
+Two code-drawn pictures have identical pixels but different saved details.
+They demonstrate the file check, not an AI-detector accuracy benchmark.

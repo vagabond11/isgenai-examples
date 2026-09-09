@@ -1,0 +1,47 @@
+# isGenAI API examples
+
+Working examples for the [isGenAI AI detector](https://isgenai.com/): check images, text and code for AI labels, saved creation details and tool-use statements.
+
+## Quick start
+
+Use Node.js 22 or newer. No package installation is needed.
+
+```sh
+node check-content.mjs
+node check-content.mjs --text "This summary was drafted with Claude."
+node check-content.mjs --code "// This function was coded using GitHub Copilot."
+node check-content.mjs --file picture.png
+```
+
+The default command checks a clearly labelled demonstration sentence. Each command sends one request to the public isGenAI endpoint; current service limits apply. No API key is needed for that endpoint.
+
+The script prints a headline, its basis, and the checks that ran. For the default sentence the headline is `AI DETECTED`, based on `Public label`: the sentence explicitly says ChatGPT was used. An ordinary mention of ChatGPT or an SDK import is not an authorship finding. Current text checks read AI-use labels and tool names; they do not provide a validated writing-style probability.
+
+For images, upload PNG, JPEG, WebP or AVIF up to 20 MB. Text/code are limited to 16,000 characters. The script sends inputs with `privacy: private`, never executes submitted code, uses a 30-second timeout and avoids automatic retry loops. Its output excludes submitted content and feedback tokens. Read the [privacy policy](https://isgenai.com/privacy) before supplying sensitive material.
+
+## Guides and reusable material
+
+- [API walkthrough](https://isgenai.com/guides/ai-detector-api): how to read results, handle failures and add a review step.
+- [API reference](https://isgenai.com/api): endpoints and request formats.
+- [AI image detector](https://isgenai.com/ai-image-detector): check a file directly.
+- [AI text detector](https://isgenai.com/ai-text-detector): inspect text or code in the browser.
+- [Image review worksheet](image-review-worksheet.txt): a reusable source/copy/result log for journalists and researchers.
+- [Controlled image example](https://isgenai.com/guides/how-to-check-ai-image#examples): identical pixels with different saved file details, illustrating what changes in the check.
+
+## Local testing
+
+Point the example at a running local deployment:
+
+```sh
+ISGENAI_BASE_URL=http://localhost:3000 node check-content.mjs
+```
+
+Hosted endpoints must use HTTPS. The script checks HTTP status and response shape. A `429` means wait before retrying; an unavailable check is not an AI/human verdict.
+
+## Validation
+
+The text, code and image request paths were run against the isGenAI application on 9 September 2026. This validates the integration, not statistical detection accuracy. `NO AI SIGNAL DETECTED` does not establish human authorship, and a file label does not verify that a depicted event happened.
+
+## Reuse
+
+The original example code and worksheet are dedicated to the public domain under CC0-1.0. See [LICENSE](LICENSE). This repository contains examples only; it does not contain production credentials, user uploads or the private application repository.
