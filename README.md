@@ -29,7 +29,7 @@ node extract-saved-prompt.mjs picture.png
 
 The command sends one image to `POST /v1/prompt` with `mode=saved_only`. It prints `status: saved` and the saved prompt when supported records are present. HTTP 422 with `no_saved_prompt` becomes `status: not_found`; no model call or paid fallback is made. There are no automatic retries. This mode also works when the server's reconstruction budget is exhausted.
 
-Supported saved records include AUTOMATIC1111 settings in PNG, JPEG and WebP files, and supported ComfyUI or Flux workflows in PNG. Not every workflow has a single recoverable prompt. Saved details are editable and can be absent from screenshots or exported copies. A missing saved prompt is not a finding of human authorship.
+Supported saved records include AUTOMATIC1111 settings in PNG, JPEG and WebP files, ComfyUI or Flux workflows in PNG, and InvokeAI creation records in PNG. Different InvokeAI main/style prompts are not combined into a claimed original prompt. Not every workflow has a single recoverable prompt. Saved details are editable and can be absent from screenshots or exported copies. A missing saved prompt is not a finding of human authorship.
 
 The original filename is replaced with a generic name during upload. Unlike the check example, this command deliberately prints the prompt; keep private prompts out of shared logs. The prompt endpoint processes the image on isGenAI's server and does not add the image or prompt to a public report. Upload and service limits apply.
 
