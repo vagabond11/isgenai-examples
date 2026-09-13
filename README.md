@@ -19,6 +19,22 @@ The script prints a headline, its basis, and the checks that ran. For the defaul
 
 For images, upload PNG, JPEG, WebP or AVIF up to 20 MB. Text/code are limited to 16,000 characters. The script sends inputs with `privacy: private`, never executes submitted code, uses a 30-second timeout and avoids automatic retry loops. Its output excludes submitted content and feedback tokens. Read the [privacy policy](https://isgenai.com/privacy) before supplying sensitive material.
 
+## Extract a saved image prompt
+
+Use the saved-prompt example when you want the instructions stored in an original image, with no model reconstruction:
+
+```bash
+node extract-saved-prompt.mjs picture.png
+```
+
+The command sends one image to `POST /v1/prompt` with `mode=saved_only`. It prints `status: saved` and the saved prompt when supported records are present. HTTP 422 with `no_saved_prompt` becomes `status: not_found`; no model call or paid fallback is made. There are no automatic retries. This mode also works when the server's reconstruction budget is exhausted.
+
+Supported saved records include AUTOMATIC1111 settings in PNG, JPEG and WebP files, and supported ComfyUI or Flux workflows in PNG. Not every workflow has a single recoverable prompt. Saved details are editable and can be absent from screenshots or exported copies. A missing saved prompt is not a finding of human authorship.
+
+The original filename is replaced with a generic name during upload. Unlike the check example, this command deliberately prints the prompt; keep private prompts out of shared logs. The prompt endpoint processes the image on isGenAI's server and does not add the image or prompt to a public report. Upload and service limits apply.
+
+Try the [paired demonstration images](https://isgenai.com/guides/how-to-check-ai-image#examples) or read the [saved-prompt API reference](https://isgenai.com/api#saved-prompts). These code-drawn fixtures have identical pixels, with and without deliberately saved generation instructions. They illustrate file behavior, not detection accuracy.
+
 ## Guides and reusable material
 
 - [API walkthrough](https://isgenai.com/guides/ai-detector-api): how to read results, handle failures and add a review step.
@@ -40,7 +56,7 @@ Hosted endpoints must use HTTPS. The script checks HTTP status and response shap
 
 ## Validation
 
-The text, code and image request paths were run against the isGenAI application on 9 September 2026. This validates the integration, not statistical detection accuracy. `NO AI SIGNAL DETECTED` does not establish human authorship, and a file label does not verify that a depicted event happened.
+The text, code and image request paths were run against the isGenAI application on 9 September 2026. The saved-prompt example was verified against production on 13 September 2026 with the paired demonstration images: `saved` for the labelled copy and `not_found` for the copy without saved instructions. Local regressions also check no provider call, no spend reservation, no reconstructed-cache reuse and no retry on HTTP 429. This validates the integration, not statistical detection accuracy. `NO AI SIGNAL DETECTED` does not establish human authorship, and a file label does not verify that a depicted event happened.
 
 ## Reuse
 
