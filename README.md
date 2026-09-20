@@ -35,6 +35,29 @@ The original filename is replaced with a generic name during upload. Unlike the 
 
 Try the [paired demonstration images](https://isgenai.com/guides/how-to-check-ai-image#examples) or read the [saved-prompt API reference](https://isgenai.com/api#saved-prompts). These code-drawn fixtures have identical pixels, with and without deliberately saved generation instructions. They illustrate file behavior, not detection accuracy.
 
+## Controlled PNG metadata and workflow lab
+
+The [worked image guides](https://isgenai.com/guides) now include a downloadable [fixture lab](guide-lab). It contains ten PNG files, exact SHA-256 hashes and observed results. The pixels are code-drawn; the prompts, settings and workflow records are deliberately attached demonstration data. This is a record-reading exercise, not an AI accuracy benchmark.
+
+The cases cover:
+
+- One known AUTOMATIC1111-style parameters record in tEXt, zTXt and compressed iTXt chunks.
+- An InvokeAI-style record that preserves a zero seed.
+- Missing and conflicting saved records.
+- Two ComfyUI record types: editable workflow and API graph.
+- Byte copies, changed settings and a PNG re-export with identical decoded pixels.
+
+To recreate the inputs and compare bytes and pixels, use Node.js 22+ in a new working directory:
+
+```sh
+npm install sharp
+node /path/to/isgenai-examples/guide-lab/reproduce.mjs
+```
+
+The script downloads two public isGenAI fixture images and writes a new `isgenai-guide-lab` directory. It refuses to overwrite an existing run. It does not upload private files. Record the Sharp version when comparing re-encoded file hashes. Use [results.json](guide-lab/results.json) for the saved-field observations checked by the application reader.
+
+Read the [PNG text-record guide](https://isgenai.com/guides/png-text-records), [ComfyUI graph guide](https://isgenai.com/guides/comfyui-editor-api-graphs) or [copy-versus-export guide](https://isgenai.com/guides/image-copy-versus-export). All fixture files, original example code and observations in this lab are CC0-1.0.
+
 ## Guides and reusable material
 
 - [API walkthrough](https://isgenai.com/guides/ai-detector-api): how to read results, handle failures and add a review step.
