@@ -58,6 +58,19 @@ The script downloads two public isGenAI fixture images and writes a new `isgenai
 
 Read the [PNG text-record guide](https://isgenai.com/guides/png-text-records), [ComfyUI graph guide](https://isgenai.com/guides/comfyui-editor-api-graphs) or [copy-versus-export guide](https://isgenai.com/guides/image-copy-versus-export). All fixture files, original example code and observations in this lab are CC0-1.0.
 
+## Read workflow records and compare exports
+
+The [image metadata developer guide](https://isgenai.com/developers/image-metadata) documents the current workflow and before/after comparison endpoints, including empty results, supported fields and limits.
+
+```sh
+node image-records-example.mjs workflow guide-lab/workflow-records.png
+node image-records-example.mjs compare guide-lab/parameters-tEXt.png guide-lab/reencoded.png
+```
+
+Use Node.js 22+. Each command uploads only the supplied local files and makes one request. No account or model call is needed for these current public endpoints. The client uses generic filenames, caps file reads, rejects URL inputs and redirects, times out after 30 seconds, and never retries automatically. Read the guide before using private data: JSON results can contain saved prompts, graph values and embedded paths.
+
+The [Image Metadata Lab](https://isgenai.com/image-metadata-lab) presents seven distinct questions using the same ten existing CC0 fixtures. Each case includes a method, original downloads, exact hashes, recorded outputs and limitations. This is a new way to explore the existing observations, not a new accuracy study.
+
 ## Guides and reusable material
 
 - [API walkthrough](https://isgenai.com/guides/ai-detector-api): how to read results, handle failures and add a review step.
@@ -80,6 +93,8 @@ Hosted endpoints must use HTTPS. The script checks HTTP status and response shap
 ## Validation
 
 The text, code and image request paths were run against the isGenAI application on 9 September 2026. The saved-prompt example was verified against production on 13 September 2026 with the paired demonstration images: `saved` for the labelled copy and `not_found` for the copy without saved instructions. Local regressions also check no provider call, no spend reservation, no reconstructed-cache reuse and no retry on HTTP 429. This validates the integration, not statistical detection accuracy. `NO AI SIGNAL DETECTED` does not establish human authorship, and a file label does not verify that a depicted event happened.
+
+The workflow and comparison CLI was verified against production on 23 September 2026: two two-node graph records were recovered from the owned workflow PNG, and the before/after example returned `unreadable_after` for the saved prompt after the tested PNG export. These observations validate the documented integration, not general accuracy.
 
 ## Reuse
 
